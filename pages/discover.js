@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import SwipeableActivityList from '../components/activities/SwipeableActivityList';
-import ActivityCard from '../components/activities/ActivityCard';
-import ActivityDetail from '../components/activities/ActivityDetail';
-import { calculateCycleInfo } from '../components/cycle/CycleUtils';
-import { phaseConfig } from '../components/cycle/PhaseIndicator';
-import BottomNav from '../components/ui/BottomNav';
+import SwipeableActivityList from './activities/SwipeableActivityList';
+import ActivityCard from './activities/ActivityCard';
+import ActivityDetail from './activities/ActivityDetail';
+import { calculateCycleInfo } from './cycle/CycleUtils';
+import { phaseConfig } from './cycle/PhaseIndicator';
+import BottomNav from './ui/BottomNav';
 
 export default function Discover() {
   const queryClient = useQueryClient();

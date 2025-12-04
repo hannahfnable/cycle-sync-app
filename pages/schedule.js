@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
 
-import WeeklyTimetable from '../components/schedule/WeeklyTimetable';
-import ActivityPicker from '../components/schedule/ActivityPicker';
-import { calculateCycleInfo, getPhaseForDate } from '../components/cycle/CycleUtils';
-import { phaseConfig } from '../components/cycle/PhaseIndicator';
-import BottomNav from '../components/ui/BottomNav';
+import WeeklyTimetable from './schedule/WeeklyTimetable';
+import ActivityPicker from './schedule/ActivityPicker';
+import { calculateCycleInfo, getPhaseForDate } from './cycle/CycleUtils';
+import { phaseConfig } from './cycle/PhaseIndicator';
+import BottomNav from './ui/BottomNav';
 
 export default function Schedule() {
   const queryClient = useQueryClient();

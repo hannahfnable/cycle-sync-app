@@ -7,10 +7,10 @@ import { Settings, Bell, ChevronRight, Plus, Calendar, Sparkles } from 'lucide-r
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 
-import PhaseIndicator, { phaseConfig } from '../components/cycle/PhaseIndicator';
-import { calculateCycleInfo } from '../components/cycle/CycleUtils';
-import ActivityCard, { typeEmojis } from '../components/activities/ActivityCard';
-import BottomNav from '../components/ui/BottomNav';
+import PhaseIndicator, { phaseConfig } from './cycle/PhaseIndicator';
+import { calculateCycleInfo } from './cycle/CycleUtils';
+import ActivityCard, { typeEmojis } from './activities/ActivityCard';
+import BottomNav from './ui/BottomNav';
 
 export default function Home() {
   const queryClient = useQueryClient();

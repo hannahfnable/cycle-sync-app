@@ -1,4 +1,4 @@
-import { PhaseType } from "../enums/phase.enum";
+import { PhaseType } from "../../app/enums/phase.enum";
 
 const phaseStyles = {
   menstruation: {

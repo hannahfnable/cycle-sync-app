@@ -1,4 +1,4 @@
-import { PhaseType } from "../enums/phase.enum";
+import { PhaseType } from "../../app/enums/phase.enum";
 
 interface PhaseStyle {
     type: PhaseType,

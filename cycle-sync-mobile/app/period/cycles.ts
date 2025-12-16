@@ -1,15 +1,14 @@
-import { PeriodInputs } from "../interfaces/periodinputs";
-import { Cycle, NextCycle } from "./cycle";
 
+import { PeriodInputs } from "../types/interfaces"
+import { Cycle, NextCycle } from "./cycle"
 
-class User  {
-    id: string;
-    quiz: PeriodInputs | null;
-    cycles: Cycle[] | undefined;
+class Cycles {
+    id: string
+    cycles: Cycle[]
+
     constructor(id: string, quiz: PeriodInputs | null) {
-        this.id = id;
-        this.quiz = quiz;
-        this.cycles = this.generateCycles(quiz);
+        this.id = id
+        this.cycles = this.generateCycles(quiz)
     }
 
     generateCycles(answers: PeriodInputs | null) {
@@ -21,7 +20,6 @@ class User  {
             return []
         }
     }
-
 }
 
-export {User};
+export {Cycles};

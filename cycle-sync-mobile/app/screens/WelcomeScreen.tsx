@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import HomeScreen from './HomeScreen';
 import ProfileScreen from './ProfileScreen';
-import { User } from '../../lib/entities/user';
+import { User } from '../period/user';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { v4 as uuidv4 } from 'uuid';
 

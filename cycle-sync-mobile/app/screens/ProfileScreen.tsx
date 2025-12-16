@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
-import Ionicons from '@react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const ProfileScreen: React.FC = () => {
   return (
@@ -20,7 +20,6 @@ const ProfileScreen: React.FC = () => {
           </View>
           <View style={styles.profileInfo}>
             <Text style={styles.name}>Hannah</Text>
-            <Text style={styles.email}>hannah@example.com</Text>
           </View>
         </View>
 
@@ -28,9 +27,6 @@ const ProfileScreen: React.FC = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Cycle Settings</Text>
           <SettingItem label="Cycle Length" value="28 days" />
-          <SettingItem label="Luteal Phase" value="14 days" />
-          <SettingItem label="Follicular Phase" value="8 days" />
-          <SettingItem label="Ovulation" value="Tracked" />
         </View>
 
         {/* Notifications */}

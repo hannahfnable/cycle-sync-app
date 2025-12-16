@@ -1,6 +1,6 @@
 import { PhaseType } from "../enums/phase.enum";
 
-interface Phase {
+interface PhaseStyle {
     type: PhaseType,
     color: string,
     bg: string,
@@ -10,4 +10,4 @@ interface Phase {
     description: string,
 };
 
-export type { Phase };
+export type { PhaseStyle };

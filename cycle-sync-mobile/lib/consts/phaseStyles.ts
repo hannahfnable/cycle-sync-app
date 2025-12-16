@@ -1,7 +1,6 @@
 import { PhaseType } from "../enums/phase.enum";
-import { Phase } from "../interfaces/phase.interface";
 
-const phases = {
+const phaseStyles = {
   menstruation: {
     type: PhaseType.Menstruation,
     color: 'from-rose-400 to-red-500',
@@ -10,7 +9,7 @@ const phases = {
     border: 'border-rose-200',
     emoji: '🌙',
     description: 'Rest & restore',
-  } as Phase,
+  },
   follicular: {
     type: PhaseType.Follicular,
     color: 'from-emerald-400 to-teal-500',
@@ -19,7 +18,7 @@ const phases = {
     border: 'border-emerald-200',
     emoji: '🌱',
     description: 'Rising energy',
-  } as Phase,
+  },
   ovulation: {
     type: PhaseType.Ovulation,
     color: 'from-amber-400 to-orange-500',
@@ -28,7 +27,7 @@ const phases = {
     border: 'border-amber-200',
     emoji: '☀️',
     description: 'Peak vitality',
-  } as Phase,
+  },
   luteal: {
     type: PhaseType.Luteal,
     color: 'from-violet-400 to-purple-500',
@@ -37,5 +36,5 @@ const phases = {
     border: 'border-violet-200',
     emoji: '🍂',
     description: 'Winding down',
-  } as Phase,
+  },
 };

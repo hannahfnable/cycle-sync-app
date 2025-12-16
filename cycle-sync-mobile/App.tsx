@@ -9,7 +9,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeScreen from './app/screens/HomeScreen';
 import ScheduleScreen from './app/screens/ScheduleScreen';
 import ProfileScreen from './app/screens/ProfileScreen';
-import ActivityDetailScreen from './app/screens/ActivityDetailScreen';
+import ActivityDetailScreen from './app/screens/ActivityDetailScreen'
+import InputScreen from './app/screens/InputScreen';
+import WelcomeScreen from './app/screens/WelcomeScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,11 +30,9 @@ function HomeStack() {
         },
       }}
     >
-      <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{ title: 'Cycle Sync' }}
-      />
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
+      <Stack.Screen name="Input" component={InputScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
         name="ActivityDetail"
         component={ActivityDetailScreen}
@@ -50,7 +50,6 @@ export default function App() {
           headerShown: false,
           tabBarIcon: ({ focused, color, size }) => {
             let iconName: string = '';
-
             if (route.name === 'Home') {
               iconName = focused ? 'home' : 'home-outline';
             } else if (route.name === 'Schedule') {

@@ -9,14 +9,8 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-type RootStackParamList = {
-  HomeScreen: undefined;
-  ActivityDetail: { id: string };
-};
 
-type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
-
-const HomeScreen: React.FC<Props> = ({ navigation }) => {
+const HomeScreen: React.FC = ({ navigation }) => {
   const cyclePhase = 'Follicular'; // This would come from state/context
   const daysLeft = 7;
 

@@ -8,15 +8,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Ionicons from '@react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type RootStackParamList = {
   ActivityDetail: { id: string };
 };
 
-type Props = NativeStackScreenProps<RootStackParamList, 'ActivityDetail'>;
-
-const ActivityDetailScreen: React.FC<Props> = ({ route, navigation }) => {
+const ActivityDetailScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'ActivityDetail'>> = ({ route, navigation }) => {
   const { id } = route.params;
 
   const activities: Record<

@@ -3,15 +3,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './app/screens/HomeScreen';
 import ScheduleScreen from './app/screens/ScheduleScreen';
 import ProfileScreen from './app/screens/ProfileScreen';
-import ActivityDetailScreen from './app/screens/ActivityDetailScreen'
 import InputScreen from './app/screens/InputScreen';
 import WelcomeScreen from './app/screens/WelcomeScreen';
+import { ActivityDetailScreen } from './app/screens/ActivityDetailScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

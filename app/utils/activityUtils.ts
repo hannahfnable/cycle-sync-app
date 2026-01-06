@@ -1,4 +1,5 @@
-import { Activity, Context, ActivityTags, ActivityId } from '../types/interfaces';
+import { Context } from "vm";
+import { ActivityTags, ActivityId } from "../types/interfaces";
 
 function scoreCard(activityTags: ActivityTags, context: Context): number {
   let score = 0;

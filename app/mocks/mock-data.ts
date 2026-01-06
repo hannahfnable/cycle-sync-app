@@ -1,5 +1,5 @@
 import { ActivityDetails, ActivityId, ActivityTags } from '../types/interfaces';
-import { TimeOfDay, Mood, ActivityType } from "../types/enums";
+import { TimeOfDay, Mood, ActivityType } from "../types/enums"; 
 import { PhaseType } from '../enums/phase.enum';
 
 

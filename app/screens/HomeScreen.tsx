@@ -5,9 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  SafeAreaView,
 } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 
 const HomeScreen: React.FC = ({ navigation }) => {
@@ -15,7 +13,6 @@ const HomeScreen: React.FC = ({ navigation }) => {
   const daysLeft = 7;
 
   return (
-    <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Cycle Phase Card */}
         <View style={styles.phaseCard}>
@@ -72,7 +69,6 @@ const HomeScreen: React.FC = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
   );
 };
 

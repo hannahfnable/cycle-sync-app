@@ -1,3 +1,4 @@
+
 import { Cycle, NextCycle } from '../period/cycle';
 import { PeriodInputs } from '../types/interfaces';
 

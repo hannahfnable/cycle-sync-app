@@ -9,19 +9,18 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { ActivityService } from '../services/ActivityService';
-import { Activity } from '../types/interfaces';
+import { ActivityService } from '../../cycle-sync-mobile/app/services/ActivityService';
 
 type RootStackParamList = {
   ActivityDetail: { id: string };
 };
 
-const ActivityDetailScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'ActivityDetail'>> = ({ route, navigation }) => {
+export const ActivityDetailScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'ActivityDetail'>> = ({ route, navigation }) => {
   const { id } = route.params;
 
   let activityService: ActivityService = new ActivityService();
   const activity = activityService.getActivityById(id);
-  function saveAsFavourite(id?: string) {
+  function saveAsFavourite(id?: string): void {
     if (id != undefined) {
       activityService.addFavourite(id)
     }

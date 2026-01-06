@@ -2,7 +2,7 @@ import { PhaseType } from "../../app/enums/phase.enum";
 
 const phaseStyles = {
   menstruation: {
-    type: PhaseType.Menstruation,
+    type: PhaseType.Menstrual,
     color: 'from-rose-400 to-red-500',
     bg: 'bg-rose-50',
     text: 'text-rose-700',
@@ -20,7 +20,7 @@ const phaseStyles = {
     description: 'Rising energy',
   },
   ovulation: {
-    type: PhaseType.Ovulation,
+    type: PhaseType.Ovulatory,
     color: 'from-amber-400 to-orange-500',
     bg: 'bg-amber-50',
     text: 'text-amber-700',

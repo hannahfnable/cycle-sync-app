@@ -31,13 +31,13 @@ class Cycle {
 
     generatePhases() {
         const periodEnd = new Date(this.startDate.getDate() + this.periodLength)
-        const menustrualPhase =  new Phase(this.startDate, periodEnd, PhaseType.Menstruation)
+        const menustrualPhase =  new Phase(this.startDate, periodEnd, PhaseType.Menstrual)
 
         const follicularPhase =  new Phase(periodEnd, this.ovulationDate, PhaseType.Follicular )
 
         const lutealDate = new Date(this.ovulationDate)
         lutealDate.setDate(this.ovulationDate.getDate() + 6)
-        const ovulationPhase = new Phase(this.ovulationDate, lutealDate, PhaseType.Ovulation )
+        const ovulationPhase = new Phase(this.ovulationDate, lutealDate, PhaseType.Ovulatory )
 
         const lutealPhase = new Phase(lutealDate, this.end_date, PhaseType.Luteal)
 

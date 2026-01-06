@@ -1,9 +1,4 @@
-export enum Phase {
-  Menstrual = "menstrual",
-  Follicular = "follicular",
-  Ovulatory = "ovulatory",
-  Luteal = "luteal"
-}
+
 
 export enum TimeOfDay {
   Morning = "morning",

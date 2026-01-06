@@ -3,9 +3,9 @@ import { Activity, Context, ActivityTags, ActivityId } from '../types/interfaces
 function scoreCard(activityTags: ActivityTags, context: Context): number {
   let score = 0;
 
-  if (activityTags.phase.includes(context.phase)) score += 2;
-  if (activityTags.time.includes(context.time)) score += 1;
-  if (activityTags.mood.includes(context.mood)) score += 1;
+  if (activityTags.phase.includes(context.phase.phaseType)) score += 2;
+  //if (activityTags.time.includes(context.time)) score += 1;
+  //if (activityTags.mood.includes(context.mood)) score += 1;
   if (context.favourites.activityIds.includes(activityTags.id)) score += 2;
 
   // Random novelty factor
@@ -14,7 +14,14 @@ function scoreCard(activityTags: ActivityTags, context: Context): number {
   return score;
 }
 
-export function weightedRandomChoice(activities: ActivityTags[], k: number, context: Context): ActivityId[] {
+export function generateActivities(
+  context: Context): ActivityId[] {
+  const activities: ActivityTags[] = require('../mocks/mock-data').activityTags;
+  const days = context.phase.length;
+  return weightedRandomChoice(activities, (context.settings.activitiesPerDay * days), context);
+}
+
+function weightedRandomChoice(activities: ActivityTags[], k: number, context: Context): ActivityId[] {
   const scoredCards = activities.map(card => ({
     card,
     score: scoreCard(card, context)

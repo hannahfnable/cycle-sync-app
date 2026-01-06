@@ -1,8 +1,8 @@
 
 enum PhaseType {
-    Menstruation = 'menstruation',
+    Menstrual = 'menstrual',
     Follicular = 'follicular',
-    Ovulation = 'ovulation',
+    Ovulatory = 'ovulatory',
     Luteal = 'luteal',
 };
 

@@ -1,7 +1,9 @@
 import { ActivityDetails, ActivityId, ActivityTags } from '../types/interfaces';
-import { Phase, TimeOfDay, Mood, ActivityType } from "../types/enums";
+import { TimeOfDay, Mood, ActivityType } from "../types/enums";
+import { PhaseType } from '../enums/phase.enum';
 
-export const activities: ActivityId[] = [
+
+export const mockActivityIds: ActivityId[] = [
   {
     id: "meal_smoothie",
   },
@@ -13,23 +15,23 @@ export const activities: ActivityId[] = [
   }
 ];
 
-export const activityTags: ActivityTags[] = [{
+export const mockActivityTags: ActivityTags[] = [{
       id: "meal_smoothie",
-      phase: [Phase.Follicular, Phase.Ovulatory],
+      phase: [PhaseType.Follicular, PhaseType.Ovulatory],
       time: [TimeOfDay.Morning],
       mood: [Mood.Neutral, Mood.High],
       type: ActivityType.Meal,
   },
    {
       id: "gentle_yoga",
-      phase: [Phase.Menstrual, Phase.Luteal],
+      phase: [PhaseType.Menstrual, PhaseType.Luteal],
       time: [TimeOfDay.Evening, TimeOfDay.Morning],
       mood: [Mood.Low, Mood.Neutral],
       type: ActivityType.Exercise
     },
     {
       id: "journaling",
-      phase: [Phase.Luteal],
+      phase: [PhaseType.Luteal],
       time: [TimeOfDay.Evening, TimeOfDay.Afternoon],
       mood: [Mood.Low, Mood.Neutral],
       type: ActivityType.Creative,
@@ -37,7 +39,7 @@ export const activityTags: ActivityTags[] = [{
     },
 ];
 
-export const activityDetails: ActivityDetails[] = [{
+export const mockActivityDetails: ActivityDetails[] = [{
       id: "meal_smoothie",
       title: "Morning Protein Smoothie",
       description: "Protein smoothie to kickstart your morning",

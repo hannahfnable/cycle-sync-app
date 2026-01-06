@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { ActivityService } from '../services/ActivityService';
+import { Activity } from '../types/interfaces';
 
 type RootStackParamList = {
   ActivityDetail: { id: string };
@@ -17,58 +19,13 @@ type RootStackParamList = {
 const ActivityDetailScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'ActivityDetail'>> = ({ route, navigation }) => {
   const { id } = route.params;
 
-  const activities: Record<
-    string,
-    {
-      name: string;
-      description: string;
-      benefits: string[];
-      tips: string[];
-      intensity: string;
-      duration: string;
+  let activityService: ActivityService = new ActivityService();
+  const activity = activityService.getActivityById(id);
+  function saveAsFavourite(id?: string) {
+    if (id != undefined) {
+      activityService.addFavourite(id)
     }
-  > = {
-    '1': {
-      name: 'Cardio Workouts',
-      description:
-        'High-intensity cardiovascular exercises are excellent during the follicular and ovulation phases when energy levels are at their peak.',
-      benefits: [
-        'Boosts energy and stamina',
-        'Improves cardiovascular health',
-        'Enhances mood and confidence',
-        'Increases endurance',
-      ],
-      tips: [
-        'Start with a 5-minute warm-up',
-        'Maintain consistent intensity for 30 minutes',
-        'Stay hydrated throughout',
-        'Cool down for 5 minutes after',
-      ],
-      intensity: 'High',
-      duration: '45-60 minutes',
-    },
-    '2': {
-      name: 'Yoga',
-      description:
-        'Gentle to moderate yoga practices help with flexibility, balance, and relaxation. Adjust intensity based on your cycle phase.',
-      benefits: [
-        'Improves flexibility',
-        'Reduces stress and anxiety',
-        'Enhances body awareness',
-        'Promotes better sleep',
-      ],
-      tips: [
-        'Focus on hip-opening poses',
-        'Avoid inversions during menstruation',
-        'Practice breathing exercises',
-        'Listen to your body',
-      ],
-      intensity: 'Low to Moderate',
-      duration: '45-90 minutes',
-    },
-  };
-
-  const activity = activities[id] || activities['1'];
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -76,17 +33,13 @@ const ActivityDetailScreen: React.FC<NativeStackScreenProps<RootStackParamList, 
         {/* Activity Header */}
         <View style={styles.header}>
           <View style={styles.iconContainer}>
-            <Ionicons name="fitness" size={40} color="#fff" />
+            <p>{activity?.emoji}</p>
           </View>
-          <Text style={styles.activityName}>{activity.name}</Text>
+          <Text style={styles.activityName}>{activity?.title}</Text>
           <View style={styles.metaInfo}>
             <View style={styles.metaItem}>
-              <Ionicons name="flash" size={16} color="#e91e63" />
-              <Text style={styles.metaText}>{activity.intensity}</Text>
-            </View>
-            <View style={styles.metaItem}>
               <Ionicons name="timer" size={16} color="#e91e63" />
-              <Text style={styles.metaText}>{activity.duration}</Text>
+              <Text style={styles.metaText}>{activity?.minutes} Minutes</Text>
             </View>
           </View>
         </View>
@@ -94,35 +47,14 @@ const ActivityDetailScreen: React.FC<NativeStackScreenProps<RootStackParamList, 
         {/* Description */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>About</Text>
-          <Text style={styles.description}>{activity.description}</Text>
-        </View>
-
-        {/* Benefits */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Benefits</Text>
-          {activity.benefits.map((benefit, index) => (
-            <View key={index} style={styles.listItem}>
-              <View style={styles.bullet} />
-              <Text style={styles.listText}>{benefit}</Text>
-            </View>
-          ))}
-        </View>
-
-        {/* Tips */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Tips</Text>
-          {activity.tips.map((tip, index) => (
-            <View key={index} style={styles.listItem}>
-              <Text style={styles.tipNumber}>{index + 1}</Text>
-              <Text style={styles.listText}>{tip}</Text>
-            </View>
-          ))}
+          <Text style={styles.description}>{activity?.description}</Text>
+          <Text style={styles.listText}>{activity?.link}</Text>
         </View>
 
         {/* Action Button */}
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity style={styles.actionButton} onPress={saveAsFavourite(activity?.id)}>
           <Ionicons name="add-circle" size={20} color="#fff" />
-          <Text style={styles.actionButtonText}>Log Activity</Text>
+          <Text style={styles.actionButtonText}>Add as Favourite</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
@@ -234,4 +166,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ActivityDetailScreen;

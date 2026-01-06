@@ -1,4 +1,6 @@
-import { Phase, TimeOfDay, Mood, ActivityType } from "./enums";
+import { PhaseType } from "../enums/phase.enum";
+import { Phase } from "../period/phase";
+import { TimeOfDay, Mood, ActivityType } from "./enums";
 
 interface PeriodInputs {
     cycle_length_days: number;
@@ -7,11 +9,18 @@ interface PeriodInputs {
     previous_period_start: Date; // ISO date string
 }
 
+interface SyncSettings {
+    notificationsEnabled: boolean;
+    reminderTime: string; // "HH:MM" format
+    theme: 'light' | 'dark' | 'system';
+    activitiesPerDay: number;
+}
+
 
 export type { PeriodInputs };
 export interface ActivityTags {
   id: string;
-  phase: Phase[];
+  phase: PhaseType[];
   time: TimeOfDay[];
   mood: Mood[];
   favorite?: boolean;
@@ -42,9 +51,13 @@ export interface Activity extends ActivityId {
   details: ActivityDetails;
 }
 
-export interface Context {
-  favourites: Favorites;
-  phase: Phase;
+export interface DailyContext extends Context {
   time: TimeOfDay;
   mood: Mood;
+}
+
+export interface Context {
+  phase: Phase;
+  favourites: Favorites;
+  settings: SyncSettings;
 }

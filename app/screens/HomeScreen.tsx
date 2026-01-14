@@ -6,18 +6,20 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import { CycleService } from '../utils/CycleService';
 
 
-const HomeScreen: React.FC = ({ navigation }) => {
-  const cyclePhase = 'Follicular'; // This would come from state/context
-  const daysLeft = 7;
+export default function HomeScreen({ navigation }: any) {
+  const cycleService = new CycleService();
+  const cyclePhase = cycleService.getCurrentPhase();
+  const daysLeft = cycleService.getDaysLeftInPhase();
 
   return (
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Cycle Phase Card */}
         <View style={styles.phaseCard}>
           <Text style={styles.phaseLabel}>Current Phase</Text>
-          <Text style={styles.phaseName}>{cyclePhase}</Text>
+          <Text style={styles.phaseName}>{cyclePhase.toString()}</Text>
           <Text style={styles.daysLeft}>{daysLeft} days left</Text>
         </View>
 
@@ -176,4 +178,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;

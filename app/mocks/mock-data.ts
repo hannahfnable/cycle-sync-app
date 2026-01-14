@@ -1,6 +1,6 @@
 import { ActivityDetails, ActivityId, ActivityTags } from '../types/interfaces';
 import { TimeOfDay, Mood, ActivityType } from "../types/enums"; 
-import { PhaseType } from '../enums/phase.enum';
+import { PhaseType } from '../types/phase.enum';
 
 
 export const mockActivityIds: ActivityId[] = [

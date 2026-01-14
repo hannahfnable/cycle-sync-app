@@ -1,5 +1,5 @@
-import { PhaseType } from "../enums/phase.enum";
-import { Phase } from "../period/phase";
+import { PhaseType } from "./phase.enum";
+import { Phase } from "./phase";
 import { TimeOfDay, Mood, ActivityType } from "./enums";
 
 interface PeriodInputs {

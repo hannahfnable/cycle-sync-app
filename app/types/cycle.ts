@@ -1,5 +1,5 @@
-import { PhaseType } from "../enums/phase.enum";
 import { Phase } from "./phase";
+import { PhaseType } from "./phase.enum";
 
 
 class Cycle {

@@ -1,4 +1,4 @@
-import { PhaseType } from "../enums/phase.enum";
+import { PhaseType } from "./phase.enum";
 
 class Phase {
     start_date: Date;

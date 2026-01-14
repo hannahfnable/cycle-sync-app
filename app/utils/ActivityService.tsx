@@ -79,6 +79,6 @@ class ActivityService {
         return results;
     }
         
-}
+};
 
-export {ActivityService}
+export {ActivityService};

@@ -3,23 +3,24 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import HomeScreen from './HomeScreen';
 import ProfileScreen from './ProfileScreen';
-import { User } from '../period/user';
+import { User } from '../types/user';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { v4 as uuidv4 } from 'uuid';
+import logger from '../utils/LoggerService';
 
 
 
-export default function WelcomeScreen({ navigation }) {
+export default function WelcomeScreen({ navigation }: any) {
     useEffect(() => {
     const setupUserId = async () => {
       let userId = await AsyncStorage.getItem('userId');
       if (!userId) {
         userId = uuidv4(); // generate new unique ID
         await AsyncStorage.setItem('userId', userId);
-        console.log('Generated new user ID:', userId);
-        const [user, setUser] = useState(new User(userId, null));
+        logger.info('Generated new user ID', { userId });
+        const [user, setUser] = useState(new User(userId));
       } else {
-        console.log('Existing user ID:', userId);
+        logger.info('Existing user ID', { userId });
       }
     };
     setupUserId();

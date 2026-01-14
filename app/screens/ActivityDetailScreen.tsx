@@ -9,17 +9,14 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { ActivityService } from '../../cycle-sync-mobile/app/services/ActivityService';
+import { ActivityService } from '../utils/ActivityService';
 
-type RootStackParamList = {
-  ActivityDetail: { id: string };
-};
 
-export const ActivityDetailScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'ActivityDetail'>> = ({ route, navigation }) => {
-  const { id } = route.params;
+export const ActivityDetailScreen: React.FC<NativeStackScreenProps<any, 'ActivityDetail'>> = ({ route, navigation }) => {
+  const id = route?.params?.id as string | undefined;
 
-  let activityService: ActivityService = new ActivityService();
-  const activity = activityService.getActivityById(id);
+  const activityService = new ActivityService();
+  const activity = id ? activityService.getActivityById(id) : undefined;
   function saveAsFavourite(id?: string): void {
     if (id != undefined) {
       activityService.addFavourite(id)
@@ -32,7 +29,7 @@ export const ActivityDetailScreen: React.FC<NativeStackScreenProps<RootStackPara
         {/* Activity Header */}
         <View style={styles.header}>
           <View style={styles.iconContainer}>
-            <p>{activity?.emoji}</p>
+            <Text style={{fontSize:32}}>{activity?.emoji}</Text>
           </View>
           <Text style={styles.activityName}>{activity?.title}</Text>
           <View style={styles.metaInfo}>
@@ -51,7 +48,7 @@ export const ActivityDetailScreen: React.FC<NativeStackScreenProps<RootStackPara
         </View>
 
         {/* Action Button */}
-        <TouchableOpacity style={styles.actionButton} onPress={saveAsFavourite(activity?.id)}>
+        <TouchableOpacity style={styles.actionButton} onPress={() => saveAsFavourite(activity?.id)}>
           <Ionicons name="add-circle" size={20} color="#fff" />
           <Text style={styles.actionButtonText}>Add as Favourite</Text>
         </TouchableOpacity>
@@ -91,12 +88,11 @@ const styles = StyleSheet.create({
   },
   metaInfo: {
     flexDirection: 'row',
-    gap: 20,
   },
   metaItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    marginRight: 12,
   },
   metaText: {
     fontSize: 13,
@@ -120,7 +116,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     marginBottom: 12,
-    gap: 12,
   },
   bullet: {
     width: 6,
@@ -155,7 +150,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
+    paddingHorizontal: 12,
     marginTop: 20,
   },
   actionButtonText: {

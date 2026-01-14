@@ -11,9 +11,20 @@ import ProfileScreen from './app/screens/ProfileScreen';
 import InputScreen from './app/screens/InputScreen';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import { ActivityDetailScreen } from './app/screens/ActivityDetailScreen';
+import logger, { LogLevel } from './app/utils/LoggerService';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Welcome: undefined;
+  Input: undefined;
+  Home: undefined;
+  ActivityDetail: { id: string };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
+
+// initialize logger
+logger.init({ level: LogLevel.INFO, persist: false, enableConsole: true });
 
 function HomeStack() {
   return (
@@ -30,7 +41,7 @@ function HomeStack() {
       }}
     >
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
-      <Stack.Screen name="Input" component={InputScreen} />
+      <Stack.Screen name="Input" component={InputScreen} options={{}} />
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
         name="ActivityDetail"

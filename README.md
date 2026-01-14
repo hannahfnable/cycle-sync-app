@@ -8,3 +8,9 @@ Install Packages:
 Run Locally 
 
 'npm run start'
+
+or 
+
+'npx expo start' 
+
+add -c to clear

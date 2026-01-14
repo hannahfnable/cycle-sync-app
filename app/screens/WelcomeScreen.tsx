@@ -11,6 +11,8 @@ import logger from '../utils/LoggerService';
 
 
 export default function WelcomeScreen({ navigation }: any) {
+    const [user, setUser] = useState<User | null>(null);
+
     useEffect(() => {
     const setupUserId = async () => {
       let userId = await AsyncStorage.getItem('userId');
@@ -18,9 +20,10 @@ export default function WelcomeScreen({ navigation }: any) {
         userId = uuidv4(); // generate new unique ID
         await AsyncStorage.setItem('userId', userId);
         logger.info('Generated new user ID', { userId });
-        const [user, setUser] = useState(new User(userId));
+        setUser(new User(userId));
       } else {
         logger.info('Existing user ID', { userId });
+        setUser(new User(userId));
       }
     };
     setupUserId();

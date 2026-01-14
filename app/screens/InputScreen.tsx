@@ -6,7 +6,7 @@ import { CycleService } from '../utils/CycleService';
 import { checkIfVisited, markAsVisited } from '../utils/VisitedQuizChecker';
 import LoggerService from '../utils/LoggerService';
 
-export default async function InputScreen({ navigation }: any) {
+export default function InputScreen({ navigation }: any) {
   const [cycleLength, setUserCycleLength] = useState(28);
   const [newPeriod, setNewPeriod] = useState<Date>(new Date());
   const [periodLength, setPeriodLength] = useState(5);
@@ -14,10 +14,26 @@ export default async function InputScreen({ navigation }: any) {
       new Date(Date.now() - 28 * 24 * 60 * 60 * 1000)
     );
 
+  const [visited, setVisited] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const v = await checkIfVisited();
+        if (mounted) setVisited(v);
+      } catch (err) {
+        LoggerService.warn('InputScreen checkIfVisited failed', { err });
+        if (mounted) setVisited(false);
+      }
+    })();
+    return () => { mounted = false; };
+  }, []);
+
   const cycleService = new CycleService();
 
 
-  async function submitPeriodData(periodInfo: PeriodInputs) {
+  async function submitPeriodData(periodInfo: PeriodInputs): Promise<void> {
     if (await checkIfVisited()) {
       cycleService.addPeriod(periodInfo);
       LoggerService.info('User has previously submitted period data. Added new period.', { periodInfo });
@@ -25,6 +41,7 @@ export default async function InputScreen({ navigation }: any) {
       cycleService.createCycles(periodInfo)
       await markAsVisited();
     }
+    navigation.navigate('Home');
   }
 
   return (
@@ -33,7 +50,16 @@ export default async function InputScreen({ navigation }: any) {
       <CalendarPicker
         onDateChange={(date: Date) => setNewPeriod(date)}
         selectedDayColor="#ff4da6"
+        selectedDayStyle={{ backgroundColor: '#eb94bf' }}
         todayBackgroundColor="#ffe6f0"
+          customDatesStyles={[
+    {
+      date: new Date('2026-01-01'),
+      containerStyle: { borderWidth: 1, borderColor: '#e91e63', borderRadius: 8 },
+      style: { backgroundColor: '#ffe6f0' },
+      textStyle: { color: '#d63384' }
+    }
+  ]}
       /> 
       <Text style={styles.label}>How many days long is your normal cycle? (time between periods)</Text>
       <TextInput
@@ -47,25 +73,34 @@ export default async function InputScreen({ navigation }: any) {
         keyboardType="numeric"
         onChangeText={(periodLength) => setPeriodLength(Number(periodLength))}
         />
-      { !(await checkIfVisited()) && (
+      {visited === false && (
         <>
           <Text style={styles.label}>When was your previous cycle's period?</Text>
             <CalendarPicker
             onDateChange={(date: any) => setPreviousPeriod(date)}
             selectedDayColor="#ff4da6"
+            selectedDayStyle={{ backgroundColor: '#d37ba7' }}
             todayBackgroundColor="#ffe6f0"
-        />
+              customDatesStyles={[
+    {
+      date: new Date('2026-01-01'),
+      containerStyle: { borderWidth: 1, borderColor: '#e91e63', borderRadius: 8 },
+      style: { backgroundColor: '#ffe6f0' },
+      textStyle: { color: '#d63384' }
+    }
+  ]}
+          />
         </>
       )}
     
-      <TouchableOpacity style={styles.button} onPress={() => {
+      <TouchableOpacity style={styles.button} 
+      onPress={() => 
           submitPeriodData({
             cycle_length_days: cycleLength,
             last_menstruation_start: newPeriod,
             menstruation_length_days: periodLength,
             previous_period_start: previousPeriod
-          });
-          navigation.navigate('Home'); }
+          })
         }>
         <Text style={styles.buttonText}>Continue</Text>
       </TouchableOpacity>
